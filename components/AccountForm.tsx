@@ -1,12 +1,18 @@
-export function AccountForm() {
+import { FormWrapper } from "./FormWrapper";
+
+type AccountFormProps = {
+    email: string,
+    password: string,
+    updateFields: (fields) => void
+}
+
+export function AccountForm({ email, password, updateFields}: AccountFormProps) {
     return (
-        <>
-            <label htmlFor="">Account Form</label>
-            <input type="text" required autoFocus name="" id="" />
-            <label htmlFor="">Last Name</label>
-            <input type="text" required name="" id="" />
-            <label htmlFor="">Age</label>
-            <input type="number" required name="" id="" />
-        </>
+        <FormWrapper title="Account Creation">
+            <label htmlFor="email">Email</label>
+            <input type="email" required autoFocus name="email" id="email" value={email} onChange={e => updateFields({email: e.target.value})} />
+            <label htmlFor="">Password</label>
+            <input type="password" required name="password" id="password" value={password} onChange={e => updateFields({password: e.target.value})} />
+        </FormWrapper>
     );
 }
